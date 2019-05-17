@@ -8,9 +8,10 @@ namespace StrangerThingsGallery.Controllers
 {
     public class EpisodesController : Controller
     {
-        public string Detail()
+        public ActionResult Detail()
         {
-            return "Hello from Episode controller";
+            return View();
+            
         }
     }
 }
