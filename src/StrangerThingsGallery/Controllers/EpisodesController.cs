@@ -1,4 +1,5 @@
-﻿using StrangerThingsGallery.Models;
+﻿using StrangerThingsGallery.Data;
+using StrangerThingsGallery.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,21 @@ namespace StrangerThingsGallery.Controllers
 {
     public class EpisodesController : Controller
     {
-        public ActionResult Detail()
+        private EpisodeRepository _episodeRepository = null;
+
+        public EpisodesController()
         {
-            var episode = new Episode()
+            _episodeRepository = new EpisodeRepository();
+        }
+
+        public ActionResult Detail(int? id)
+        {
+            if (id == null)
             {
-                SeriesTitle = "Stranger Things",
-                EpisodeNumber = 1,
-                DescriptionHtml = "<p>On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab.</p>",
-                Artists = new Artist[]
-                {
-                    new Artist() {Role = "Director", Name = "Matt Duffer, Ross Duffer"},
-                    new Artist() {Role = "Writor", Name = "Matt Duffer, Ross Duffer"}
-                }
-            };
+                return HttpNotFound();
+            }
+
+            var episode = _episodeRepository.GetEpisode(id.Value);
 
 
             return View(episode);
