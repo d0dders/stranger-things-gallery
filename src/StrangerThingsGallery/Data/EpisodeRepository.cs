@@ -61,5 +61,10 @@ namespace StrangerThingsGallery.Data
             }
             return episodeToReturn;
         }
+
+        public Episode[] GetEpisodes()
+        {
+            return _episodes;
+        }
     }
 }

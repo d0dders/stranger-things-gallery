@@ -28,7 +28,12 @@ namespace StrangerThingsGallery.Controllers
 
 
             return View(episode);
-            
+        }
+
+        public ActionResult Index()
+        {
+            var episodes = _episodeRepository.GetEpisodes();
+            return View(episodes);
         }
     }
 }
