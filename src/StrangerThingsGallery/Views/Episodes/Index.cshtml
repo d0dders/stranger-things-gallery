@@ -10,10 +10,12 @@
     @foreach (var episode in Model)
     {
         <div class="col-md-3">
-            <h4>@episode.DisplayText</h4>
-            <img src="/Images/@episode.CoverImageFileName"
-                 alt="@episode.DisplayText"
-                 class="img-responsive" />
+            <h4>@Html.ActionLink(episode.DisplayText, "Detail", new { id = episode.Id })</h4>
+            <a href="@Url.Action("Detail", new { id = episode.Id})">
+                <img src="/Images/@episode.CoverImageFileName"
+                     alt="@episode.DisplayText"
+                     class="img-responsive" />
+            </a>
         </div>
     }
 
